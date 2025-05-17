@@ -20,7 +20,13 @@ public class GameLogic {
      * @return a String representing the computer's choice
      */
     public String getComputerChoice() {
-        
+        int ran = (int) (Math.random()*3)+1;
+        if(ran == 1)
+            return "Rock";
+        else if(ran == 2)
+            return "Paper";
+        else if(ran==3)
+            return "Scissors";
         return "";
     }
 
@@ -31,8 +37,17 @@ public class GameLogic {
      * @return A string containing the computer choice, user choice, and the result of the game.
      */
     public String determineWinner(String predictedClass, String computerChoice) {
-        
-        return "";
+        String ret = "Computer " + computerChoice +", Player " + predictedClass + " result ";
+        if(predictedClass.equals(computerChoice)){
+            return ret+"Tie";
+        }
+        else if((predictedClass.equalsIgnoreCase("Rock")&&computerChoice.equalsIgnoreCase("Scissors"))||(predictedClass.equalsIgnoreCase("Scissors")&&computerChoice.equalsIgnoreCase("Paper"))||(predictedClass.equalsIgnoreCase("Paper")&&computerChoice.equalsIgnoreCase("Rock"))){
+            return ret+"Player wins";
+        }
+        else if(predictedClass.equalsIgnoreCase("Nothing")){
+            return "No results if nothing is entered";
+        }
+        return ret+"Computer wins";
     }
 
     /**
@@ -42,8 +57,8 @@ public class GameLogic {
      * @return A string indicating a tie result.
      */
     public String getTieResult() {
-        
-        return "";
+        gameOver = true;
+        return "There was a tie.";
     }
 
     /**
@@ -53,8 +68,8 @@ public class GameLogic {
      * @return a string indicating that the user has won
      */
     public String getUserWinnerResult() {
-        
-        return "";
+        gameOver = true;
+        return "The User has won the game.";
     }
 
     /**
@@ -64,8 +79,8 @@ public class GameLogic {
      * @return A string indicating that the player has lost.
      */
     public String getComputerWinnerResult() {
-        
-        return "";
+        gameOver = true;
+        return "The Computer has won the game.";
     }
 
     /**
